@@ -1,3 +1,5 @@
+-----------/// Create a database named "menu" ///--------------
+
 CREATE TABLE "recipes" (
   "id" serial primary key,
   "name" varchar(100),
