@@ -89,4 +89,11 @@ UPDATE ingredients
 SET "name" = 'Chicken', "bulk_price" = 20, "quanity" = 10, "quantity_unit" = 'lbs'
 WHERE id = 1;
 
--- 
+-- delete ingredient from DB
+DELETE FROM ingredients
+WHERE ID = 1;
+
+-- delete recipe from DB
+DELETE FROM recipes
+WHERE ID = 1;
+
