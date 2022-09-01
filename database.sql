@@ -101,3 +101,11 @@ WHERE id = 1;
 UPDATE recipes
 SET "name" = 'food', "price" = 12
 WHERE id = 1;
+
+-- GET * from recipes + recipe ingredients (returns multiple rows)
+SELECT recipes.name AS "Menu Item", recipes.price, ingredients.name AS "ingredient"
+FROM recipes
+JOIN recipe_ingredients ON recipes.id = recipe_ingredients.recipe_id
+JOIN ingredients ON recipe_ingredients.ingredient_id = ingredients.id
+WHERE recipes.id = 2
+;
