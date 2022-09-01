@@ -81,3 +81,12 @@ VALUES
 (14,5,7,10,'oz'),
 (15,5,9,10,'oz');
 ------------------------------/// END Test Data ///-----------------------------
+
+------------------------------/// SQL QUERIES ///-----------------------------------
+
+-- update ingredient
+UPDATE ingredients
+SET "name" = 'Chicken', "bulk_price" = 20, "quanity" = 10, "quantity_unit" = 'lbs'
+WHERE id = 1;
+
+-- 
