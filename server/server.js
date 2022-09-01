@@ -4,19 +4,19 @@ require('dotenv').config();
 
 const app = express();
 
-// const sessionMiddleware = require('./modules/session-middleware');
-// const passport = require('./strategies/user.strategy');
+const sessionMiddleware = require('./modules/session-middleware');
+const passport = require('./strategies/user.strategy');
 
 // Body parser middleware
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport Session Configuration //
-// app.use(sessionMiddleware);
+app.use(sessionMiddleware);
 
 // start up passport sessions
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // // Route includes
 const menuItemRouter = require('./routes/menuItem.router');
