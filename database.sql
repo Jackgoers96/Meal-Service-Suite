@@ -91,9 +91,13 @@ WHERE id = 1;
 
 -- delete ingredient from DB
 DELETE FROM ingredients
-WHERE ID = 1;
+WHERE id = 1;
 
 -- delete recipe from DB
 DELETE FROM recipes
-WHERE ID = 1;
+WHERE id = 1;
 
+-- update price in recipes table 
+UPDATE recipes
+SET "name" = 'food', "price" = 12
+WHERE id = 1;
