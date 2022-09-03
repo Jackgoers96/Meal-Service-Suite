@@ -21,10 +21,12 @@ app.use(passport.session());
 // // Route includes
 const menuItemRouter = require('./routes/menuItem.router');
 const priceApiRouter = require('./routes/priceApi.router');
+const userRouter = require('./routes/user.router');
 
 /* Routes */
 app.use('/api/menuItem', menuItemRouter); // This route handles menuItem related things.
 app.use('/api/priceApi', priceApiRouter); // This route handles priceApi related things.
+app.use('/api/user', userRouter); // This route handles user related things.
 
 // Serve static files
 app.use(express.static('build'));
