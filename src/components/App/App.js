@@ -3,13 +3,13 @@
   import useEffect from 'react';
   import { useDispatch, useSelector } from 'react-redux';
   //=====================^< TOOLS >^===================================
-  import LowLevelRoute from '../LowLevelRoute/LowLevelRoute'; // Lowest Authorization level protected route
-  import AdminLevelRoute from '../AdminLevelRoute/AdminLevelRoute'; // Admin only Authorization protected route
+  import ProtectedRoute from '../ProtectedRoutes/ProtectedRoute'; // Lowest Authorization level protected route
+  import AdminRoute from '../ProtectedRoutes/AdminRoute'; // Admin only Authorization protected route
   //=====================^< ROUTES >^===================================
   import LandingPage from '../LandingPage/LandingPage';
   import LoginPage from '../LoginPage/LoginPage';
-  import RegisterPage from '../RegisterPage/RegisterPage';
-  import AboutPage from '../AboutPage/AboutPage';
+  import RegistrationPage from '../Pages/RegistrationPage/RegistrationPage';
+  import AboutPage from '../Pages/AboutPage/AboutPage';
   import Nav from '../Nav/Nav';
   import AllUsersPage from '../AllUsersPage/AllUsersPage';
   import LowLevelAuthPage from '../LowLevelAuthPage/LowLevelAuthPage'; // Lowest Authorization level protected page
@@ -83,7 +83,7 @@
                   <Redirect to="/all-users-page" />
                   :
                   // Otherwise, show the registration page
-                  <RegisterPage />
+                  <RegistrationPage />
                 }
               </Route>
               {/* -----< End Registration >----- */}
@@ -115,23 +115,23 @@
               {/* ======================= Authentication Pages and Logic =======================*/}
  
               {/* -----< Level 1+ Users Only Page >--------- */}
-              <LowLevelRoute
+              <ProtectedRoute
                 // If logged in, this will show the user a page
                 exact
                 path="/low-level-auth-page">
                 <Nav />
                 <LowLevelAuthPage />
-              </LowLevelRoute>
+              </ProtectedRoute>
               {/* -----< End Level 1+ Users Only Page >----- */}
  
               {/* ------< Level 3 users only page >----- */}
-              <AdminLevelRoute
+              <AdminRoute
               // If logged in and authentication is level 3, this will show the user a page
                 exact
                 path="/admin-only-page">
                 <Nav />
                 <AdminLevelAuthPage />
-              </AdminLevelRoute>
+              </AdminRoute>
               {/* ------< Level 3 users only page >----- */}
  
  
