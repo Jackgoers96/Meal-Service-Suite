@@ -1,33 +1,36 @@
 // import { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Outlet} from 'react-router-dom';
 
-function Nav() {
+function NavBarLayout() {
 
   const navigate = useNavigate();
 
   const pages = [
     'About',
-    'Registration',
+    'Register',
     'Login',
     'Home',
+    'Organization',
   ]
 
   const handleNavigation = (pageTitle) =>{
-    pageTitle.toLowercase()
+    let newTitle = pageTitle.toLowerCase()
     navigate('/' + pageTitle)
   }
 
   return (
     <>
-      {pages.map(pageName => (
+      {pages.map((pageName, i) => (
         <p
-          value={pageName}
-          onClick={(event)=> handleNavigation(event.target.value)}
+          key={i}
+          // value={pageName}
+          onClick={()=> handleNavigation(pageName)}
         >{pageName}
         </p>
       ))}
+      <Outlet />
     </>
   )
 }
-export default Nav;
+export default NavBarLayout;
