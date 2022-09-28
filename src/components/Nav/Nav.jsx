@@ -1,10 +1,10 @@
 // import { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
-import useHistory from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 function Nav() {
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const pages = [
     'About',
@@ -15,7 +15,7 @@ function Nav() {
 
   const handleNavigation = (pageTitle) =>{
     pageTitle.toLowercase()
-    history.push('/' + pageTitle)
+    navigate('/' + pageTitle)
   }
 
   return (

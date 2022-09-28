@@ -1,6 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-require('dotenv').config();
+const bodyParser = require('body-parser');//-----------------------< Temporarily disabled >------------------------//-----------------------< Temporarily disabled >------------------------
+// require('dotenv').config();//-----------------------< Temporarily disabled >------------------------
 
 const app = express();
 
@@ -8,8 +8,8 @@ const app = express();
 // const passport = require('./strategies/user.strategy'); //-----------------------< Temporarily disabled >------------------------
 
 // Body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());//-----------------------< Temporarily disabled >------------------------
+// app.use(bodyParser.urlencoded({ extended: true }));//-----------------------< Temporarily disabled >------------------------
 
 // Passport Session Configuration //
 // app.use(sessionMiddleware); //-----------------------< Temporarily disabled >------------------------
@@ -24,9 +24,9 @@ const priceApiRouter = require('./routes/priceApi.router');
 const userRouter = require('./routes/user.router');
 
 /* Routes */
-app.use('/api/menuItem', menuItemRouter); // This route handles menuItem related things.
-app.use('/api/priceApi', priceApiRouter); // This route handles priceApi related things.
-app.use('/api/user', userRouter); // This route handles user related things.
+// app.use('/api/menuItem', menuItemRouter); // This route handles menuItem related things.//-----------------------< Temporarily disabled >------------------------
+// app.use('/api/priceApi', priceApiRouter); // This route handles priceApi related things.//-----------------------< Temporarily disabled >------------------------
+// app.use('/api/user', userRouter); // This route handles user related things.//-----------------------< Temporarily disabled >------------------------
 
 // Serve static files
 app.use(express.static('build'));
