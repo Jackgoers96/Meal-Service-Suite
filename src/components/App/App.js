@@ -3,8 +3,8 @@ import { HashRouter as Router, Navigate, Route, Routes, Link, } from 'react-rout
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 //=====================^< TOOLS >^===================================
-import ProtectedRoute from '../ProtectedRoutes/ProtectedRoute'; // Lowest Authorization level protected route
-import AdminRoute from '../ProtectedRoutes/AdminRoute'; // Admin only Authorization protected route
+import RequireAuth from '../RequireAuthentication/RequireAuth'; // Lowest Authorization level protected route
+import RequireAdminAuth from '../RequireAuthentication/RequireAdminAuth'; // Admin only Authorization protected route
 //=====================^< ROUTES >^===================================
 import LandingPage from '../Pages/LandingPage/LandingPage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
@@ -57,24 +57,37 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-      <Router>
-        <Routes>
-          <Route element={<NavBarLayout />}>
-            <Route exact path="/" element={<Navigate to={'/home'} />} />
-            <Route exact path="/home" element={<LandingPage />} />
-            <Route exact path="/recipes" element={<RecipesPage />} />
-            <Route exact path="/organization" element={<OrganizationPage />} />
-            <Route exact path="/about" element={<AboutPage />} />
-            <Route exact path="/register" element={<RegistrationPage />} />
-            <Route exact path="/login" element={<LoginPage />} />
-          </Route>
+        <Router>
+          <Routes>
+            <Route element={<NavBarLayout />}>
+              <Route exact path="/" element={<Navigate to={'/home'} />} />
+              <Route exact path="/home" element={<LandingPage />} />
+              {/* Requires Authentication Below */}
+              <Route exact path="/recipes" element={
+                <RequireAuth
+                // redirectTo="/login" // This has been temporarily removed to see if redirection should happen on App.js or RequireAuth component.
+                >
+                  <RecipesPage />
+                </RequireAuth>
+              } />
+              <Route exact path="/organization" element={
+                <RequireAdminAuth>
+                  <OrganizationPage />
+                </RequireAdminAuth>
+
+              } />
+              {/* Requires Authentication Above */}
+              <Route exact path="/about" element={<AboutPage />} />
+              <Route exact path="/register" element={<RegistrationPage />} />
+              <Route exact path="/login" element={<LoginPage />} />
+            </Route>
             <Route path="*" element={<h1>404 Page not found ¯\_(ツ)_/¯ </h1>} />
-        </Routes>
+          </Routes>
 
 
-        {/* =============================*< Login/Registration >*============================= */}
-        {/* -----< LOGIN >--------------------------------- */}
-        {/* <Route exact path="/login">
+          {/* =============================*< Login/Registration >*============================= */}
+          {/* -----< LOGIN >--------------------------------- */}
+          {/* <Route exact path="/login">
                 {user.id ?
                   // If the user is already logged in then shouldn't need to reach this page,
                   // Navigate to the /all-users-page
@@ -84,10 +97,10 @@ function App() {
                   <LoginPage />
                 }
               </Route> */}
-        {/* -----< End Login >----- */}
+          {/* -----< End Login >----- */}
 
-        {/* -----< REGISTRATION >---------------------------- */}
-        {/* <Route exact path="/registration">
+          {/* -----< REGISTRATION >---------------------------- */}
+          {/* <Route exact path="/registration">
                 {user.id ?
                   // If the user is already logged in then shouldn't need to reach this page,
                   // Navigate them to the /home
@@ -97,55 +110,55 @@ function App() {
                   <RegistrationPage />
                 }
               </Route> */}
-        {/* -----< End Registration >----- */}
-        {/* =============================*< END Login/Registration >*============================= */}
+          {/* -----< End Registration >----- */}
+          {/* =============================*< END Login/Registration >*============================= */}
 
 
-        {/* ======================= Non-authenticated Pages =======================*/}
-        {/* ---------< ABOUT PAGE >---------------- */}
-        {/* <Route
+          {/* ======================= Non-authenticated Pages =======================*/}
+          {/* ---------< ABOUT PAGE >---------------- */}
+          {/* <Route
                 exact
                 path="/about">
                 <AboutPage />
               </Route> */}
-        {/* ---------< END ABOUT PAGE >---------------- */}
+          {/* ---------< END ABOUT PAGE >---------------- */}
 
-        {/* -----< All Users Page >--------- */}
-        {/* <Route
+          {/* -----< All Users Page >--------- */}
+          {/* <Route
                 // shows page at all times (logged in or not)
                 exact
                 path="/home">
                 <LandingPage />
               </Route> */}
-        {/* -----< End All Users Page >----- */}
-        {/* ======================= END Non-authenticated Pages =======================*/}
+          {/* -----< End All Users Page >----- */}
+          {/* ======================= END Non-authenticated Pages =======================*/}
 
 
-        {/* ======================= Authentication Pages and Logic =======================*/}
+          {/* ======================= Authentication Pages and Logic =======================*/}
 
-        {/* -----< Level 1+ Users Only Page >--------- */}
-        {/* <ProtectedRoute
+          {/* -----< Level 1+ Users Only Page >--------- */}
+          {/* <ProtectedRoute
                 // If logged in, this will show the user a page
                 exact
                 path="/recipes">
                 <Recipes />
               </ProtectedRoute> */}
-        {/* -----< End Level 1+ Users Only Page >----- */}
+          {/* -----< End Level 1+ Users Only Page >----- */}
 
-        {/* ------< Level 3 users only page >----- */}
-        {/* <AdminRoute
+          {/* ------< Level 3 users only page >----- */}
+          {/* <RequireAdminAuth
                 // If logged in and authentication is level 3, this will show the user a page
                 exact
                 path="/organization">
                 <Organization />
-              </AdminRoute> */}
-        {/* ------< Level 3 users only page >----- */}
+              </RequireAdminAuth> */}
+          {/* ------< Level 3 users only page >----- */}
 
 
 
 
 
-        {/* <Route
+          {/* <Route
                 exact
                 path="/home">
                 {user.id ?
@@ -158,13 +171,13 @@ function App() {
                 }
               </Route> */}
 
-        {/* ======================= END Authentication Pages and Logic =======================*/}
+          {/* ======================= END Authentication Pages and Logic =======================*/}
 
 
 
-        {/* --------------------------<If none of the other routes matched, we will show a 404. >--------------------------*/}
-        {/* <Route> <h1>404</h1> </Route> */}
-      </Router>
+          {/* --------------------------<If none of the other routes matched, we will show a 404. >--------------------------*/}
+          {/* <Route> <h1>404</h1> </Route> */}
+        </Router>
       </ThemeProvider>
     </>
   ); //====================================< END RETURN >====================================

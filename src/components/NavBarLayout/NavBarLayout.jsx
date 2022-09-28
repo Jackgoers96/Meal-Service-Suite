@@ -9,6 +9,7 @@ function NavBarLayout() {
   const pages = [
     'About',
     'Register',
+    'Recipes',
     'Login',
     'Home',
     'Organization',
