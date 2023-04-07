@@ -4,8 +4,16 @@ import './MealCalc.css';
 
 function MealCalc() {
   return (
-    <p>Calculator landing page</p>
-
+    <div className='pageContainer'>
+      <div className="boxLeft">
+        <p>Put some shit in here</p>
+        <p>Calculator landing page</p>
+      </div>
+      <div className="boxRight">
+        <p>Put some shit in here</p>
+        <p>Calculator landing page</p>
+      </div>
+    </div >
   );
 }
 

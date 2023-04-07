@@ -9,8 +9,8 @@ function App() {
     <Router>
       <MenuBar />
       <Routes>
-        <Route path="*" element={<Navigate to="/MealCalc" replace />}/>
-        <Route exact path="/MealCalc" element={<MealCalc />}/>
+        <Route path="*" element={<Navigate to="/MealCalc" replace />} />
+        <Route exact path="/MealCalc" element={<MealCalc />} />
       </Routes>
     </Router>
 

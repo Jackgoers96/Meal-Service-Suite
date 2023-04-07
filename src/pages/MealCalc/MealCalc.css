@@ -1,0 +1,15 @@
+.pageContainer {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+}
+.boxLeft {
+  display: block;
+  background-color: black;
+  height: 500px;
+}
+.boxRight {
+  display: block;
+  background-color: black;
+  height: 500px;
+}
